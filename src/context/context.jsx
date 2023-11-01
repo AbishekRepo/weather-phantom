@@ -1,5 +1,6 @@
 import { useState, useEffect, createContext, useContext } from "react";
 import { weather } from "../data";
+import { setImage } from "../utils/utils";
 
 const AppContext = createContext();
 
@@ -11,6 +12,7 @@ export function WeatherAppProvider({ children }) {
   const [location, setLocation] = useState("chennai");
   const [weatherData, setWeatherData] = useState(weather);
   const [isError, isSetError] = useState(false);
+  const [imageSrc, setImageSrc] = useState(null);
 
   useEffect(() => {
     const delay = 500;
@@ -42,6 +44,13 @@ export function WeatherAppProvider({ children }) {
     };
   }, [location]);
 
+  useEffect(() => {
+    if (weatherData) {
+      const temperatureCelsius = weatherData.main.temp - 273.15;
+      setImageSrc(setImage(temperatureCelsius));
+    }
+  }, [weatherData]);
+
   function handleChange(e) {
     setLocation(e.target.value);
   }
@@ -51,6 +60,7 @@ export function WeatherAppProvider({ children }) {
     handleChange,
     weatherData,
     isError,
+    imageSrc,
   };
   return (
     <AppContext.Provider value={contextValue}>{children}</AppContext.Provider>

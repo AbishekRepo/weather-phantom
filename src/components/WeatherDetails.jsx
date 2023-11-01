@@ -3,10 +3,7 @@ import cloud from "../assets/cloud.png";
 import humidity from "../assets/humidity.png";
 import strom from "../assets/storm.png";
 import locationImg from "../assets/location.png";
-import Hot from "../assets/giphy.gif";
-import cold from "../assets/cold.gif";
-import moderate from "../assets/moderate.gif";
-import chill from "../assets/chill.gif";
+import { useWeatherAppContext } from "../context/context";
 
 function WeatherDetails({ weatherData }) {
   const { main, sys, clouds, weather, wind } = weatherData;
@@ -15,28 +12,7 @@ function WeatherDetails({ weatherData }) {
   const sunriseTime = date.toLocaleTimeString();
   const sunsetTime = new Date(sys.sunset * 1000).toLocaleTimeString();
 
-  const temperatureCelsius = weatherData.main.temp - 273.15;
-
-  // Define temperature thresholds
-  const temperatureThresholds = {
-    cold: 10,
-    chilly: 20,
-    hot: 30,
-  };
-
-  let temperatureCategory = "";
-
-  if (temperatureCelsius < temperatureThresholds.cold) {
-    temperatureCategory = chill;
-  } else if (temperatureCelsius < temperatureThresholds.chilly) {
-    temperatureCategory = cold;
-  } else if (temperatureCelsius < temperatureThresholds.hot) {
-    temperatureCategory = moderate;
-  } else {
-    temperatureCategory = Hot;
-  }
-
-  console.log(temperatureCategory);
+  const { imageSrc } = useWeatherAppContext();
 
   return (
     <div className="weather-container">
@@ -75,7 +51,7 @@ function WeatherDetails({ weatherData }) {
         </div>
       </div>
       <div className="gify">
-        <img src={temperatureCategory} alt="" />
+        <img src={imageSrc} alt="" />
       </div>
     </div>
   );
