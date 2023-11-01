@@ -1,0 +1,28 @@
+export const weather = {
+  coord: { lon: 80.2785, lat: 13.0878 },
+  weather: [{ id: 721, main: "Haze", description: "haze", icon: "50d" }],
+  base: "stations",
+  main: {
+    temp: 305.14,
+    feels_like: 312.12,
+    temp_min: 305.14,
+    temp_max: 305.14,
+    pressure: 1011,
+    humidity: 66,
+  },
+  visibility: 4000,
+  wind: { speed: 3.6, deg: 50 },
+  clouds: { all: 40 },
+  dt: 1698822812,
+  sys: {
+    type: 1,
+    id: 9218,
+    country: "IN",
+    sunrise: 1698798746,
+    sunset: 1698840744,
+  },
+  timezone: 19800,
+  id: 1264527,
+  name: "Chennai",
+  cod: 200,
+};
