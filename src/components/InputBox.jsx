@@ -1,6 +1,9 @@
 import React from "react";
+import { useWeatherAppContext } from "../context/context";
 
 function InputBox({ location, handleChange }) {
+  const { isError } = useWeatherAppContext();
+
   function handleSumbit(e) {
     e.preventDefault();
   }
@@ -16,12 +19,15 @@ function InputBox({ location, handleChange }) {
           value={location}
           onChange={handleChange}
           required
-          className="rounded-xl bg-transparent text-white my-5 py-1 px-20"
+          className="rounded-xl bg-transparent text-white my-2 py-1 px-5 sm:px-20"
           style={{
             border: "1px solid white",
           }}
         />
       </form>
+      {isError && (
+        <p className="text-red-400 text-center">please enter valid city</p>
+      )}
     </div>
   );
 }

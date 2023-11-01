@@ -64,7 +64,10 @@ function WeatherDetails({ weatherData }) {
             <p>Sunset: {sunsetTime}</p>
           </div>
           <div className="info-block-name">
-            <h1 className="flex text-9xl" style={{ fontSize: "1.3rem" }}>
+            <h1
+              className="flex text-9xl text-center"
+              style={{ fontSize: "1.3rem", textAlign: "center" }}
+            >
               <img src={locationImg} alt="" className="h-6" />
               {weatherData.name}
             </h1>

@@ -1,6 +1,7 @@
 body {
   margin: 0;
   box-sizing: border-box;
+  background-color: rgb(167, 202, 245);
 }
 
 .weather-container {
@@ -51,4 +52,21 @@ body {
 .gify {
   flex: 1;
   text-align: center;
+}
+
+@media screen and (max-width: 480px) {
+  .weather-container {
+    flex-direction: column;
+    gap: 60px;
+  }
+  .gify {
+    display: none;
+  }
+  .info {
+    margin-left: 15px;
+    margin-right: 15px;
+  }
+  .info-block-name {
+    justify-content: center;
+  }
 }
