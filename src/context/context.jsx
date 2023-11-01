@@ -9,11 +9,13 @@ export function useWeatherAppContext() {
 }
 
 export function WeatherAppProvider({ children }) {
+  // State variables
   const [location, setLocation] = useState("chennai");
-  const [weatherData, setWeatherData] = useState(weather);
+  const [weatherData, setWeatherData] = useState(weather); // Initialize with default data
   const [isError, isSetError] = useState(false);
   const [imageSrc, setImageSrc] = useState(null);
 
+  // Fetch weather data when the location changes
   useEffect(() => {
     const delay = 500;
     const fetchData = async () => {
@@ -44,6 +46,7 @@ export function WeatherAppProvider({ children }) {
     };
   }, [location]);
 
+  // Calculate image source based on weather data
   useEffect(() => {
     if (weatherData) {
       const temperatureCelsius = weatherData.main.temp - 273.15;
@@ -51,10 +54,12 @@ export function WeatherAppProvider({ children }) {
     }
   }, [weatherData]);
 
+  // Handle input change
   function handleChange(e) {
     setLocation(e.target.value);
   }
 
+  // Create context value
   const contextValue = {
     location,
     handleChange,
@@ -62,6 +67,8 @@ export function WeatherAppProvider({ children }) {
     isError,
     imageSrc,
   };
+
+  // Provide context value to children components
   return (
     <AppContext.Provider value={contextValue}>{children}</AppContext.Provider>
   );

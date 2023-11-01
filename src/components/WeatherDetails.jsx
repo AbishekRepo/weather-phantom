@@ -6,12 +6,16 @@ import locationImg from "../assets/location.png";
 import { useWeatherAppContext } from "../context/context";
 
 function WeatherDetails({ weatherData }) {
+  // Destructure data from the weatherData prop
   const { main, sys, clouds, weather, wind } = weatherData;
+
+  // Calculate temperature in Celsius and format sunrise and sunset times
   const temperatureInCelsius = Math.floor((main.temp - 273.15).toFixed(2));
   const date = new Date(sys.sunrise * 1000);
   const sunriseTime = date.toLocaleTimeString();
   const sunsetTime = new Date(sys.sunset * 1000).toLocaleTimeString();
 
+  // Get the image source from the context
   const { imageSrc } = useWeatherAppContext();
 
   return (
